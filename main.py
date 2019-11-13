@@ -1,6 +1,8 @@
 # SUPER MARIO 64 playing algorithm by Isaac Thompson
 
-import neuralnetwork_4_layer as neuralnetwork # Custom module for machine learning
+print("Initializing modules...")
+
+import neuralnetwork # Custom module for machine learning
 import numpy as np # For matrix creation
 import matplotlib.pyplot as plt # Visualize neural network input
 
@@ -15,7 +17,7 @@ from time import sleep
 KEY_LIST = ['w', 'a', 's', 'd', 'up', 'left', 'down', 'right']
 
 # The object that plays games
-class N64_AI():
+class Game_Learner():
 
     # Game-playing object creation
     def __init__(self):
@@ -23,9 +25,17 @@ class N64_AI():
         # Change this to whatever your emulator window name is
         self.WINDOW_NAME = WINDOW_NAME = "Super Mario 64 (U)"
 
-        # Find window dimensions
-        #self.DIMENSIONS = self.get_window_dimensions()
-        self.DIMENSIONS = (0, 80, 640, 450)
+        # Find window dimensions and apply padding
+        self.DIMENSIONS = self.get_window_dimensions()
+        PADDING_LEFT = 0;
+        PADDING_TOP = 70;
+        PADDING_RIGHT = 20;
+        PADDING_BOTTOM = 70;
+        self.DIMENSIONS = (self.DIMENSIONS[0] + PADDING_LEFT,
+                           self.DIMENSIONS[1] + PADDING_TOP,
+                           self.DIMENSIONS[2] - PADDING_LEFT - PADDING_RIGHT,
+                           self.DIMENSIONS[3] - PADDING_TOP - PADDING_BOTTOM)
+
         assert self.DIMENSIONS != None, "Error: Could not find game window " + WINDOW_NAME
         #LEFT   = self.DIMENSIONS[0]
         #TOP    = self.DIMENSIONS[1]
@@ -175,7 +185,7 @@ class N64_AI():
         
         print("Welcome to the Game Learner by Isaac Thompson.")
         print("Window dimensions are " + str(self.DIMENSIONS))
-        self.show_screenshot()
+
         while True:
             action = 'none'
             while not action in 'tepsv':
@@ -191,6 +201,6 @@ class N64_AI():
             elif action == 'v':
                 self.show_screenshot_matrix()
 
-print("Loading...")
-AI = N64_AI()
+print("Generating neural network...")
+AI = Game_Learner()
 AI.user_control()
