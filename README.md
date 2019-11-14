@@ -21,4 +21,4 @@ The neural network is based off of the one developed by Tariq Rashid in his book
 
 The following link is an example of how the neural network interprets the game. The video stream is converted to monochrome and highly compressed in order to optimize the neural network. This is the input for the neural network; the output is a column vector representing the keys to press.
  
-[[https://github.com/shufflesninja/Machine-Learning-Gamer/blob/master/ChainChomp.png|alt=ChainChomp]]
+https://github.com/shufflesninja/Machine-Learning-Gamer/blob/master/ChainChomp.png
